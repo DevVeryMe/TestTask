@@ -12,16 +12,23 @@ namespace TestTask.EntityConfigurations
             builder.Property(userEntity => userEntity.Id).ValueGeneratedOnAdd();
 
             builder.Property(userEntity => userEntity.Name)
-                .HasMaxLength(50);
+                .HasMaxLength(50)
+                .IsRequired();
+
+            builder.Property(userEntity => userEntity.BirthDate)
+                .IsRequired();
 
             builder.Property(userEntity => userEntity.IsMarried)
-                .HasDefaultValue(false);
+                .HasDefaultValue(false)
+                .IsRequired();
 
             builder.Property(userEntity => userEntity.PhoneNumber)
-                .HasMaxLength(15);
+                .HasMaxLength(15)
+                .IsRequired();
 
             builder.Property(userEntity => userEntity.Salary)
-                .HasPrecision(10, 2);
+                .HasPrecision(10, 2)
+                .IsRequired();
         }
     }
 }

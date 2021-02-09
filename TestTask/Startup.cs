@@ -1,13 +1,15 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.VisualBasic;
+using TestTask.Constants;
+using TestTask.MappingProfiles;
+using TestTask.ServiceInterfaces;
+using TestTask.Services;
 
 namespace TestTask
 {
@@ -24,6 +26,24 @@ namespace TestTask
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile<EntityToDto>();
+                mc.AddProfile<DtoToViewModel>();
+            });
+
+            var mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
+
+            services.AddTransient<IUserService, UserService>();
+
+            services.AddDbContext<TestTaskDbContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString(StringConstants.DefaultConnectionStringName
+                    )
+                )
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
