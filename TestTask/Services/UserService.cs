@@ -24,6 +24,17 @@ namespace TestTask.Services
             _testTaskDbContext = testTaskDbContext;
         }
 
+        public async Task CreateMultipleAsync(IEnumerable<CreateUserDto> createUserDtos)
+        {
+            // Server side validation(missing)...
+
+            var userEntitiesToCreate = 
+                _mapper.Map<IEnumerable<UserEntity>>(createUserDtos);
+
+            await _testTaskDbContext.Users.AddRangeAsync(userEntitiesToCreate);
+            await _testTaskDbContext.SaveChangesAsync();
+        }
+
         public async Task<IEnumerable<GetUserDto>> GetAllAsync()
         {
             var userEntities = _testTaskDbContext

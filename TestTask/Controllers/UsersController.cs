@@ -21,6 +21,16 @@ namespace TestTask.Controllers
             _mapper = mapper;
         }
 
+        [HttpPost]
+        public async Task<IActionResult> CreateMultipleAsync([FromBody] IEnumerable<CreateUserViewModel> createUserViewModels)
+        {
+            var createUserDtos = _mapper.Map<IEnumerable<CreateUserDto>>(createUserViewModels);
+
+            await _userService.CreateMultipleAsync(createUserDtos);
+
+            return Ok();
+        }
+
         [HttpPut]
         [ProducesResponseType(typeof(GetUserViewModel), StatusCodes.Status200OK)]
         public async Task<IActionResult> UpdateAsync([FromBody] UpdateUserViewModel updateUserViewModel)
@@ -45,8 +55,8 @@ namespace TestTask.Controllers
             return View(userViewModels);
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteByIdAsync(int id)
+        [HttpDelete]
+        public async Task<IActionResult> DeleteByIdAsync([FromRoute] int id)
         {
             await _userService.DeleteByIdAsync(id);
 

@@ -2,6 +2,7 @@
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
+    "launchUrl": "Users/GetAll",
     "iisExpress": {
       "applicationUrl": "http://localhost:60029",
       "sslPort": 44346
@@ -11,6 +12,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
+      "launchUrl": "Users/GetAll",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -18,6 +20,7 @@
     "TestTask": {
       "commandName": "Project",
       "launchBrowser": true,
+      "launchUrl": "Users/GetAll",
       "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"

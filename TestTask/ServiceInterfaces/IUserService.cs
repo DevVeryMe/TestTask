@@ -6,6 +6,8 @@ namespace TestTask.ServiceInterfaces
 {
     public interface IUserService
     {
+        Task CreateMultipleAsync(IEnumerable<CreateUserDto> createUserDtos);
+
         Task<IEnumerable<GetUserDto>> GetAllAsync();
 
         Task<GetUserDto> UpdateAsync(UpdateUserDto updateUserDto);
