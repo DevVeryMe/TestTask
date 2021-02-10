@@ -6,11 +6,14 @@ namespace TestTask.Models
 {
     public class UpdateUserViewModel
     {
+        [Required]
+        [Range(0, int.MaxValue)]
         public int Id { get; set; }
 
         [StringLength(maximumLength: 50, ErrorMessage = ErrorConstants.MaxLengthError)]
         public string Name { get; set; }
 
+        [DataType(DataType.Date)]
         public DateTimeOffset BirthDate { get; set; }
 
         public bool IsMarried { get; set; }

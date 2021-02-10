@@ -69,3 +69,16 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+input:focus {
+    outline: none;
+}
+
+input {
+    background-color: transparent;
+    border: 0px solid;
+}
+
+.hidden {
+    display: none;
+}

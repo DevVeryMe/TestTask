@@ -22,8 +22,6 @@ function createEntries(model) {
         model[i].isMarried = (model[i].isMarried == 'true');
     }
 
-    let json = JSON.stringify(model);
-
     $.ajax({
         cache: false,
         url: url,
@@ -35,8 +33,6 @@ function createEntries(model) {
     }).done(function (res) {
         console.log("success");
     });
-
-    console.log("Finished 2:", model);
 }
 
 function deleteRow(id) {
@@ -52,4 +48,35 @@ function deleteRow(id) {
 
 $('.delete-row').click(function() {
     $(this).closest('tr').remove();
+});
+
+$('#users-table input').change(function() {
+    let parentTr = $(this).closest('tr');
+    let id = Number(parentTr.find("td:first").html());
+
+    let rowIndex = parentTr.index() + 1;
+    let table = document.getElementById('users-table');
+
+    var updateModel = {
+        'id': Number(table.rows[rowIndex].cells[0].innerText),
+        'name': table.rows[rowIndex].cells[1].firstChild.value,
+        'birthDate': table.rows[rowIndex].cells[2].firstChild.value,
+        'isMarried': (table.rows[rowIndex].cells[3].firstChild.value == 'True'),
+        'phoneNumber': table.rows[rowIndex].cells[4].firstChild.value,
+        'salary': Number(table.rows[rowIndex].cells[5].firstChild.value.replace(/,/g, '.'))
+    }
+
+    let url = "Update";
+
+    $.ajax({
+        cache: false,
+        url: url,
+        type: "PUT",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        traditional: true,
+        data: JSON.stringify(updateModel)
+    }).done(function (res) {
+        console.log("success");
+    });
 });
