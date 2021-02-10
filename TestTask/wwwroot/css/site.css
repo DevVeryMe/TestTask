@@ -82,3 +82,7 @@ input {
 .hidden {
     display: none;
 }
+
+th {
+    cursor: pointer;
+}

@@ -8,14 +8,19 @@
     <h1 class="display-4">Users</h1>
 </div>
 
+
+<div class="form-group">
+    <input type="text" class="form-control" id="search-input" placeholder="Search in table..">
+</div>
+
 <table class="table" id="users-table">
     <thead>
         <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Date of birth</th>
-            <th scope="col">Married</th>
-            <th scope="col">Phone</th>
-            <th scope="col">Salary</th>
+            <th onclick="sortTable(1)" scope="col">Name</th>
+            <th onclick="sortTable(2)" scope="col">Date of birth</th>
+            <th onclick="sortTable(3)" scope="col">Married</th>
+            <th onclick="sortTable(4)" scope="col">Phone</th>
+            <th onclick="sortTable(5)" scope="col">Salary</th>
             <th scope="col">Action</th>
         </tr>
     </thead>
